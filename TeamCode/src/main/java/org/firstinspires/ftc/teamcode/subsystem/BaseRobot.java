@@ -15,68 +15,43 @@ import org.firstinspires.ftc.teamcode.util.ColorfulTelemetry;
 public class BaseRobot extends UndefinedSubsystemBase {
 
 
-    public WebcamVisionSubsystem webcamVision;
+    //public ExampleSubsytem example;
     public AutoUtil autoGenerator;
-    public ShooterSubsystem shooter;
     public DriveSubsystem drive;
-    public IntakeSubsystem intake;
     public ColorfulTelemetry cTelemetry;
-
     public Telemetry telemetry;
-    public HuskyLensSubsystem huskyLensVision;
-    public TransferSubsystem transfer;
 
 
     public BaseRobot(HardwareMap hwMap, Pose2d startPos){
         drive = new DriveSubsystem(hwMap, startPos);
-        shooter = new ShooterSubsystem(hwMap);
-        intake = new IntakeSubsystem(hwMap, cTelemetry);
         autoGenerator = new AutoUtil(drive);
-        //webcamVision = new WebcamVisionSubsystem(hwMap);
-        //huskyLensVision = new HuskyLensSubsystem(hwMap, cTelemetry);
-        transfer = new TransferSubsystem(hwMap, cTelemetry);
+
+        //add the rest of subsystems here
 
 
     }
 
 
-    public void delay(double seconds){
-        ElapsedTime timer = new ElapsedTime();
-        timer.reset();
-        while(timer.seconds() < seconds){
 
-        }
 
-    }
 
 
     @Override
     public void printTelemetry(ColorfulTelemetry t) {
         drive.printTelemetry(t);
-        intake.printTelemetry(t);
-        //shooter.printTelemetry(telemetry);
-        //webcamVision.printTelemetry(t);
-        //huskyLensVision.printTelemetry(t);
-        transfer.printTelemetry(t);
+        //add more
 
     }
 
     @Override
     public void periodic() {
-        //drive.periodic();
-        intake.periodic();
-        shooter.periodic();
-        //webcamVision.periodic();
-        //huskyLensVision.periodic();
-        transfer.periodic();
+        drive.periodic();
+        //rest of subsystems here
 
     }
 
     public void stopAll(){
-        intake.stop();
-        shooter.eStop();
-        //webcamVision.stopVision();
-        transfer.stop();
+        //stop all the motors + servos, etc.
 
     }
 
@@ -85,11 +60,6 @@ public class BaseRobot extends UndefinedSubsystemBase {
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
 
-           //do things here
-
-
-
-            //AutoUtil.delay(1.5);
 
 
             return false;
